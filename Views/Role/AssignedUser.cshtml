@@ -1,0 +1,76 @@
+﻿@using _22_MVC_Identity.Models.DTOs
+@model AssignedRoleDTO
+
+@{
+    ViewData["Title"] = "AssignedUser";
+}
+
+<div class="row">
+    <div class="col-sm-8">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="card-title">Role Management</h5>
+            </div>
+            <form asp-action="AssignedUser">
+                <input type="hidden" asp-for="RoleName" />
+                <input type="hidden" asp-for="Role" />
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <h5>Add User to <span class="badge badge-success">@Model.Role.Name</span> Role</h5>
+                            <table class="table table-hover table-sm">
+                                @if (Model.HasNotRole.Count() == 0)
+                                {
+                                    <tr>
+                                        <td>All Users are @Model.Role.Name</td>
+                                    </tr>
+                                }
+                                else
+                                {
+                                    foreach (var item in Model.HasNotRole)
+                                    {
+                                        <tr>
+                                            <td>@item.UserName</td>
+                                            <td>
+                                                <input type="checkbox" value="@item.Id" name="AddIds" />
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </table>
+                        </div>
+                        <div class="col-sm-6">
+                            <h5>Remove User to <span class="badge badge-danger">@Model.Role.Name</span> Role</h5>
+                            <table class="table table-hover table-sm">
+                                @if (Model.HasRole.Count() == 0)
+                                {
+                                    <tr>
+                                        <td>All Users are @Model.Role.Name</td>
+                                    </tr>
+                                }
+                                else
+                                {
+                                    foreach (var item in Model.HasRole)
+                                    {
+                                        <tr>
+                                            <td>@item.UserName</td>
+                                            <td>
+                                                <input type="checkbox" value="@item.Id" name="DeleteIds" />
+                                            </td>
+                                        </tr>
+                                    }
+                                }
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="form-group">
+                        <input type="submit" value="Submit" class="btn btn-outline-success btn-sm float-right" />
+                        <a asp-action="Index" class="btn btn-outline-info btn-sm float-left">Back To List</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

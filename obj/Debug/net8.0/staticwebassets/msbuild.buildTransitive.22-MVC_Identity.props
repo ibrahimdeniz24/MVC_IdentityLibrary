@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\22-MVC_Identity.props" />
+</Project>
